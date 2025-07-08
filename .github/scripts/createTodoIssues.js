@@ -50,7 +50,7 @@ function findTodos(dir = ".", todos = []) {
           todos.push({
             file: fullPath,
             line: index + 1,
-            text: match[2].trim(),
+            text: match[1].trim(),
           });
         }
       });
@@ -99,7 +99,7 @@ async function main() {
 
   const updatedCache = new Set([...cache, ...newHashes]);
   fs.writeFileSync(CACHE_FILE, JSON.stringify([...updatedCache], null, 2));
-  console.log(`📝 Updated TODO cache with ${newHashes.size} new items`);
+  console.log(`Updated TODO cache with ${newHashes.size} new items`);
 }
 
 main().catch((err) => {
