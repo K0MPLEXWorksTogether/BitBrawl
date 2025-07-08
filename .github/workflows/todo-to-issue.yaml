@@ -6,6 +6,8 @@ on:
 
 jobs:
   create-todo-issues:
+    permissions:
+      issues: write
     runs-on: ubuntu-latest
 
     steps:
