@@ -1,7 +1,6 @@
 const fs = require("fs");
 const path = require("path");
 const crypto = require("crypto");
-const fetch = require("node-fetch");
 
 const GITHUB_TOKEN = process.env.GITHUB_TOKEN;
 const [REPO_OWNER, REPO_NAME] = process.env.GITHUB_REPOSITORY.split("/");
