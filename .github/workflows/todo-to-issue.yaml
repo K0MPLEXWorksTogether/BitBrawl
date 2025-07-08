@@ -8,7 +8,7 @@ jobs:
   create-todo-issues:
     permissions:
       issues: write
-      content: write
+      contents: write
     runs-on: ubuntu-latest
 
     steps:
