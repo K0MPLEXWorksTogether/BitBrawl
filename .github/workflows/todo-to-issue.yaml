@@ -1,0 +1,36 @@
+name: Create TODO Issues
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  create-todo-issues:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Install dependencies
+        run: npm install node-fetch
+
+      - name: Run TODO scanner
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: node .github/scripts/createTodoIssues.js
+
+      - name: Commit updated cache
+        run: |
+          git config user.name "github-actions"
+          git config user.email "github-actions@github.com"
+          git add .todo-cache.json
+          git diff --cached --quiet || git commit -m "chore: update TODO cache"
+          git push
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
