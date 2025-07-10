@@ -60,7 +60,7 @@ function findTodos(dir = ".", todos = []) {
 }
 
 async function createIssue(todo) {
-  const title = `TODO: ${todo.text.substring(0, 50)}`;
+  const title = `TODO: ${todo.text}`;
   const body = `**File**: \`${todo.file}\` (line ${todo.line})\n\n\`\`\`\n${todo.text}\n\`\`\``;
 
   const res = await fetch(
